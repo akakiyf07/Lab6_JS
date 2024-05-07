@@ -1,0 +1,25 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    grid-gap: 2px;
+    background-color: #333;
+    padding: 10px;
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    background-color: #999;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+.on {
+    background-color: #ff0;
+}
