@@ -13,14 +13,24 @@ const levelSelect = document.getElementById('levelSelect');
 const startButton = document.getElementById('startButton');
 
 function loadLevels() {
-    fetch('levels.json')
-        .then(response => response.json())
-        .then(data => {
-            levels = data;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'levels.json', true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            levels = JSON.parse(xhr.responseText);
             populateLevelSelect();
             init();
-        })
-        .catch(error => console.error('Error loading levels:', error));
+        } else {
+            console.error('Error loading levels:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Error loading levels');
+    };
+
+    xhr.send();
 }
 
 function populateLevelSelect() {
